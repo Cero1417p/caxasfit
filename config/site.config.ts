@@ -45,12 +45,12 @@ export interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
   site: {
-    name: "CaxaFit",
+    name: "CaxasFit",
     tagline: "Tu tienda de suplementos en Cajamarca",
     description: "Los mejores suplementos deportivos con entrega inmediata en Cajamarca",
   },
   contact: {
-    whatsapp: "51987654321", // Cambiar por tu número real
+    whatsapp: "51950049344", // Cambiar por tu número real
     email: "contacto@caxafit.com",
     address: "Jr. Amazonas 123, Cajamarca, Perú",
   },
@@ -60,10 +60,10 @@ export const siteConfig: SiteConfig = {
     ctaText: "Ver Catálogo",
   },
   expert: {
-    name: "Carlos Mendoza",
+    name: "Kangaroo",
     photo: "/expert.jpg", // Agregar foto del experto
-    bio: "Hola, soy Carlos. Selecciono personalmente los mejores suplementos para que logres tus objetivos. Si no sabes cuál elegir, escríbeme y te asesoro gratis.",
-    whatsapp: "51987654321", // Número personal del experto
+    bio: "Hola, soy Kangaroo. Selecciono personalmente los mejores suplementos para que logres tus objetivos. Si no sabes cuál elegir, escríbeme y te asesoro gratis.",
+    whatsapp: "51900136284", // Número personal del experto
   },
   social: {
     instagram: "https://instagram.com/caxafit",

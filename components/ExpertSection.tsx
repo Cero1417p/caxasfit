@@ -1,6 +1,7 @@
 "use client";
 
 import { MessageCircle, Award } from "lucide-react";
+import Image from "next/image";
 import { siteConfig } from "@/config/site.config";
 import { generateWhatsAppURL, generateConsultationMessage } from "@/utils/whatsapp";
 
@@ -19,11 +20,14 @@ export function ExpertSection() {
             {/* Expert Photo */}
             <div className="relative animate-slide-in-left">
               <div className="aspect-square rounded-2xl bg-gradient-to-br from-primary to-secondary p-1 max-w-md mx-auto">
-                <div className="w-full h-full rounded-2xl bg-muted flex items-center justify-center overflow-hidden">
-                  <div className="text-center p-8">
-                    <Award className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-4 text-primary" />
-                    <p className="text-muted-foreground">Foto del Experto</p>
-                  </div>
+                <div className="w-full h-full rounded-2xl bg-muted flex items-center justify-center overflow-hidden relative">
+                  <Image
+                    src={siteConfig.expert.photo}
+                    alt={siteConfig.expert.name}
+                    fill
+                    className="object-cover object-top"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
                 </div>
               </div>
               {/* Decorative Elements */}
