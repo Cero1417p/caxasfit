@@ -13,8 +13,8 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <TrustSection />
         <ProductCatalog />
+        <TrustSection />
         <ExpertSection />
         <FAQ />
       </main>
