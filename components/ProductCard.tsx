@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Product } from "@/config/products";
 import { generateWhatsAppURL, generateProductMessage } from "@/utils/whatsapp";
 import { siteConfig } from "@/config/site.config";
@@ -26,7 +27,13 @@ export function ProductCard({ product }: ProductCardProps) {
       {/* Product Image */}
       <div className="relative h-56 sm:h-64 bg-muted overflow-hidden">
         {selectedVariant.image ? (
-          <img src={selectedVariant.image} alt={product.name} className="w-full h-full object-cover" />
+          <Image
+            src={selectedVariant.image}
+            alt={product.name}
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center text-muted-foreground p-4">
             <div className="text-center">
