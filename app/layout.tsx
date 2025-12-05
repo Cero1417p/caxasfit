@@ -4,13 +4,15 @@ import "./globals.css";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 
 const inter = Inter({
-  variable: "--font-geist-sans",
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const outfit = Outfit({
-  variable: "--font-geist-mono",
+  variable: "--font-outfit",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
