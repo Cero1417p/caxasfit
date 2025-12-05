@@ -1,16 +1,29 @@
 "use client";
 
 import { useState } from "react";
-import { siteConfig } from "@/config/site.config";
+import { products, Product } from "@/config/products";
 import { ProductCard } from "./ProductCard";
 
 export function ProductCatalog() {
-  const [selectedCategory, setSelectedCategory] = useState("Todos");
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+
+  // Generate unique categories from products
+  const categories = ["Todos", ...Array.from(new Set(products.map((p) => p.category)))];
 
   const filteredProducts =
-    selectedCategory === "Todos"
-      ? siteConfig.products
-      : siteConfig.products.filter((p) => p.category === selectedCategory);
+    selectedCategories.length === 0
+      ? products
+      : products.filter((p) => selectedCategories.includes(p.category));
+
+  const toggleCategory = (category: string) => {
+    if (category === "Todos") {
+      setSelectedCategories([]);
+    } else {
+      setSelectedCategories((prev) =>
+        prev.includes(category) ? prev.filter((c) => c !== category) : [...prev, category]
+      );
+    }
+  };
 
   return (
     <section id="productos" className="py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
@@ -27,12 +40,12 @@ export function ProductCatalog() {
 
         {/* Category Tabs */}
         <div className="flex flex-wrap justify-center gap-3 mb-12 lg:mb-16 animate-fade-in px-4">
-          {siteConfig.categories.map((category) => (
+          {categories.map((category) => (
             <button
               key={category}
-              onClick={() => setSelectedCategory(category)}
+              onClick={() => toggleCategory(category)}
               className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full font-semibold transition-all duration-300 text-sm sm:text-base ${
-                selectedCategory === category
+                (category === "Todos" && selectedCategories.length === 0) || selectedCategories.includes(category)
                   ? "bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105"
                   : "bg-muted text-muted-foreground hover:bg-muted/80 hover:scale-105"
               }`}

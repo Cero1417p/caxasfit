@@ -1,12 +1,15 @@
-import { Product } from "@/config/site.config";
+import { Product } from "@/config/products";
 
 export function generateWhatsAppURL(phoneNumber: string, message: string): string {
     const encodedMessage = encodeURIComponent(message);
     return `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 }
 
-export function generateProductMessage(product: Product): string {
-    return `Hola! Me interesa el siguiente producto:\n\n📦 *${product.name}*\n🏷️ Marca: ${product.brand}\n💰 Precio: S/ ${product.price}\n\n¿Está disponible?`;
+export function generateProductMessage(
+    product: Product,
+    variant: Product['variants'][0]
+): string {
+    return `Hola! Me interesa el siguiente producto:\n\n📦 *${product.name}*\n🏷️ Marca: ${product.brand}\n📏 Contenido: ${variant.content}\n🍫 Sabor: ${variant.flavor}\n💰 Precio: S/ ${variant.price_public}\n\n¿Está disponible?`;
 }
 
 export function generateConsultationMessage(expertName: string): string {
