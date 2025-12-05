@@ -44,11 +44,10 @@ export function ProductCatalog() {
             <button
               key={category}
               onClick={() => toggleCategory(category)}
-              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full font-semibold transition-all duration-300 text-sm sm:text-base ${
-                (category === "Todos" && selectedCategories.length === 0) || selectedCategories.includes(category)
+              className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full font-semibold transition-all duration-300 text-sm sm:text-base ${(category === "Todos" && selectedCategories.length === 0) || selectedCategories.includes(category)
                   ? "bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105"
                   : "bg-muted text-muted-foreground hover:bg-muted/80 hover:scale-105"
-              }`}
+                }`}
             >
               {category}
             </button>

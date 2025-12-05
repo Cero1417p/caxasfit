@@ -15,6 +15,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const selectedVariant = product.variants[selectedVariantIndex];
 
   const handleWhatsAppClick = () => {
+    console.log("log");
     const message = generateProductMessage(product, selectedVariant);
     const url = generateWhatsAppURL(siteConfig.contact.whatsapp, message);
     window.open(url, "_blank");
@@ -34,25 +35,25 @@ export function ProductCard({ product }: ProductCardProps) {
             </div>
           </div>
         )}
-      </div>
-      {/* Hover Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" >
 
-        {/* Category Badge */}
+        {/* Hover Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+        {/* Category Badge siempre visible */}
         <div className="absolute top-3 right-3 bg-primary/90 backdrop-blur-sm text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold">
           {product.category}
         </div>
       </div>
 
       {/* Product Info */}
-      <div className="p-5 sm:p-6 space-y-3 sm:space-y-4">
+      <div className="p-6 space-y-4">
         {/* Brand */}
-        <div className="text-sm font-semibold text-primary uppercase tracking-wide">
+        <div className="text-xs sm:text-sm font-bold text-primary uppercase tracking-widest">
           {product.brand}
         </div>
 
         {/* Name */}
-        <h3 className="text-lg sm:text-xl font-bold line-clamp-2 min-h-[3.5rem]">
+        <h3 className="text-xl sm:text-2xl font-bold line-clamp-2 min-h-14 leading-tight">
           {product.name}
         </h3>
 
@@ -62,7 +63,7 @@ export function ProductCard({ product }: ProductCardProps) {
             <select
               value={selectedVariantIndex}
               onChange={(e) => setSelectedVariantIndex(Number(e.target.value))}
-              className="w-full px-4 py-2 pr-10 bg-muted border border-border rounded-lg appearance-none cursor-pointer hover:bg-muted/80 transition-colors text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full px-4 py-2.5 pr-10 bg-muted border border-border rounded-xl appearance-none cursor-pointer hover:bg-muted/80 transition-colors text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
             >
               {product.variants.map((variant, index) => (
                 <option key={index} value={index}>
@@ -76,23 +77,29 @@ export function ProductCard({ product }: ProductCardProps) {
 
         {/* Variant Info - Show for single variant products */}
         {product.variants.length === 1 && (
-          <div className="text-sm text-muted-foreground space-y-1">
-            <p>📏 {selectedVariant.content}</p>
+          <div className="text-sm text-muted-foreground space-y-1.5 bg-muted/50 rounded-lg p-3">
+            <p className="flex items-center gap-2">
+              <span className="text-base">📏</span>
+              <span className="font-medium">{selectedVariant.content}</span>
+            </p>
             {selectedVariant.flavor !== "Standard" && selectedVariant.flavor !== "Unflavored" && (
-              <p>🍫 {selectedVariant.flavor}</p>
+              <p className="flex items-center gap-2">
+                <span className="text-base">🍫</span>
+                <span className="font-medium">{selectedVariant.flavor}</span>
+              </p>
             )}
           </div>
         )}
 
         {/* Price */}
-        <div className="text-2xl sm:text-3xl font-bold gradient-text pt-2">
+        <div className="text-3xl sm:text-4xl font-extrabold gradient-text pt-1">
           S/ {selectedVariant.price_public.toFixed(2)}
         </div>
 
         {/* WhatsApp Button */}
         <button
           onClick={handleWhatsAppClick}
-          className="w-full py-3 px-6 bg-gradient-to-r from-success to-success/80 hover:from-success/90 hover:to-success/70 text-white rounded-full font-semibold transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2 shadow-lg text-sm sm:text-base mt-4"
+          className="w-full py-3.5 px-6 bg-gradient-to-r from-warning to-warning/80 hover:from-warning/90 hover:to-warning/90 text-white rounded-xl font-bold transition-all duration-300 hover:scale-105 hover:shadow-xl flex items-center justify-center gap-2.5 shadow-lg text-base mt-2 cursor-pointer"
         >
           <MessageCircle className="w-5 h-5" />
           Pedir por WhatsApp

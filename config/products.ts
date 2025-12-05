@@ -173,7 +173,7 @@ const products: Product[] = [
         "flavor": "Standard",
         "price_trainer": 69,
         "price_public": 89,
-        "image": "https://res.cloudinary.com/dxntqapz6/image/upload/v1764902803/prod_pag4_10_yezajt.jpg",
+        "image": "https://res.cloudinary.com/dxntqapz6/image/upload/v1764902831/prod_pag5_11_nixnnd.jpg",
       }
     ]
   },
