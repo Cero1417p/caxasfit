@@ -66,11 +66,10 @@ function ThemeToggle() {
                     setTheme(item.name);
                     setIsOpen(false);
                   }}
-                  className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${
-                    theme === item.name
+                  className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors ${theme === item.name
                       ? "bg-primary/10 text-primary"
                       : "hover:bg-muted/50 text-foreground"
-                  }`}
+                    }`}
                 >
                   <item.icon className="w-4 h-4" />
                   <span className="flex-1 text-left">{item.label}</span>
@@ -107,16 +106,30 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "glass shadow-lg" : "bg-transparent"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "glass shadow-lg" : "bg-transparent"
+        }`}
     >
       <nav className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
+          {/* Mobile Menu Button - Left */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 rounded-lg hover:bg-muted transition-colors flex items-center justify-center"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
+            </button>
+          </div>
+
           {/* Logo */}
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="text-xl sm:text-2xl font-bold gradient-text hover:scale-105 transition-transform flex items-center"
+            className="text-2xl sm:text-2xl font-bold gradient-text hover:scale-105 transition-transform flex items-center"
           >
             {siteConfig.site.name}
           </button>
@@ -141,25 +154,14 @@ export function Header() {
             >
               Preguntas Frecuentes
             </button>
-            
+
             {/* Theme Toggle */}
             <ThemeToggle />
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center gap-2">
+          {/* Mobile Theme Toggle - Right */}
+          <div className="md:hidden">
             <ThemeToggle />
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-lg hover:bg-muted transition-colors flex items-center justify-center"
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
           </div>
         </div>
 
