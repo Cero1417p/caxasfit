@@ -55,7 +55,7 @@ export const siteConfig: SiteConfig = {
     address: "Jr. Amazonas 123, Cajamarca, Perú",
   },
   hero: {
-    title: "Tus suplementos en Cajamarca, sin esperar envíos de Lima",
+    title: "Suplementos en Cajamarca, listos para ti",
     subtitle: "Proteínas, creatinas y quemadores con entrega inmediata. Paga contra entrega.",
     ctaText: "Ver Catálogo",
   },
