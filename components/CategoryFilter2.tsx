@@ -34,7 +34,7 @@ export function CategoryFilter({
       */}
       <div
         ref={scrollContainerRef}
-        className="flex overflow-x-auto py-4 px-4 gap-3 w-full md:flex-wrap md:justify-center md:overflow-visible items-center [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
+        className="flex overflow-x-auto py-4 px-1 gap-3 w-full md:flex-wrap md:justify-center md:overflow-visible items-center [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
       >
         {categories.map((category) => {
           const isSelected =
