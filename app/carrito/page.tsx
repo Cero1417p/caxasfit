@@ -3,19 +3,23 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { useCart } from "@/contexts/CartContext";
 import { products } from "@/config/products";
 import { generateCartWhatsAppURL } from "@/utils/whatsapp";
-import { Trash2, Plus, Minus, Tag, MessageCircle, ShoppingBag, ArrowLeft } from "lucide-react";
+import { Trash2, Plus, Minus, Tag, MessageCircle, ShoppingBag, ArrowLeft, AlertTriangle, X } from "lucide-react";
+import { toast } from "sonner";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function CarritoPage() {
+    const router = useRouter();
     const { cart, updateQuantity, removeFromCart, clearCart, subtotal, shipping, total, applyPromoCode, promoCode } =
         useCart();
     const [promoInput, setPromoInput] = useState("");
     const [promoError, setPromoError] = useState("");
+    const [showConfirmation, setShowConfirmation] = useState(false);
 
     const handleApplyPromo = () => {
         if (!promoInput.trim()) {
@@ -31,15 +35,28 @@ export default function CarritoPage() {
         }
     };
 
-    const handleCheckout = () => {
+    const handleCheckoutClick = () => {
+        setShowConfirmation(true);
+    };
+
+    const confirmCheckout = () => {
+        // 1. Open WhatsApp
         const url = generateCartWhatsAppURL(cart, subtotal, shipping, total, promoCode);
         window.open(url, "_blank");
+
+        // 2. Show success message
+        toast.success("¡Pedido iniciado con éxito! Gracias por tu compra.");
+
+        // 3. Clear cart
+        clearCart();
+
+        // 4. Redirect to home
+        router.push("/");
     };
 
     if (cart.length === 0) {
         return (
             <>
-                <Header />
                 <main className="flex-1 container mx-auto px-4 py-16">
                     <div className="max-w-md mx-auto text-center space-y-6">
                         <ShoppingBag className="w-24 h-24 mx-auto text-muted-foreground opacity-50" />
@@ -56,14 +73,13 @@ export default function CarritoPage() {
                         </Link>
                     </div>
                 </main>
-                <Footer />
             </>
         );
     }
 
     return (
         <>
-            <main className="flex-1 bg-background">
+            <main className="flex-1 bg-background relative">
                 <div className="container mx-auto px-4 py-8 max-w-4xl">
                     {/* Header */}
                     <div className="flex items-center justify-between mb-8">
@@ -222,7 +238,7 @@ export default function CarritoPage() {
 
                                     {/* Checkout Button */}
                                     <button
-                                        onClick={handleCheckout}
+                                        onClick={handleCheckoutClick}
                                         className="w-full py-4 bg-gradient-to-r from-warning to-warning/80 hover:from-warning/90 hover:to-warning/90 text-white rounded-xl font-bold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3"
                                     >
                                         <MessageCircle className="w-5 h-5" />
@@ -233,6 +249,64 @@ export default function CarritoPage() {
                         </div>
                     </div>
                 </div>
+
+                {/* Confirmation Modal */}
+                <AnimatePresence>
+                    {showConfirmation && (
+                        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+                            {/* Backdrop */}
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                onClick={() => setShowConfirmation(false)}
+                                className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+                            />
+
+                            {/* Modal */}
+                            <motion.div
+                                initial={{ scale: 0.9, opacity: 0 }}
+                                animate={{ scale: 1, opacity: 1 }}
+                                exit={{ scale: 0.9, opacity: 0 }}
+                                className="relative bg-card border border-border rounded-2xl shadow-2xl p-6 max-w-sm w-full z-10"
+                            >
+                                <button
+                                    onClick={() => setShowConfirmation(false)}
+                                    className="absolute top-4 right-4 p-1 hover:bg-muted rounded-full transition-colors"
+                                >
+                                    <X className="w-5 h-5 text-muted-foreground" />
+                                </button>
+
+                                <div className="flex flex-col items-center text-center space-y-4">
+                                    <div className="w-12 h-12 rounded-full bg-warning/10 flex items-center justify-center text-warning mb-2">
+                                        <AlertTriangle className="w-6 h-6" />
+                                    </div>
+
+                                    <h3 className="text-xl font-bold">¿Confirmar Pedido?</h3>
+
+                                    <p className="text-muted-foreground text-sm">
+                                        Serás redirigido a WhatsApp para enviar el detalle de tu pedido y completar la compra.
+                                    </p>
+
+                                    <div className="flex gap-3 w-full pt-2">
+                                        <button
+                                            onClick={() => setShowConfirmation(false)}
+                                            className="flex-1 py-2.5 px-4 bg-muted hover:bg-muted/80 rounded-xl font-medium transition-colors"
+                                        >
+                                            Cancelar
+                                        </button>
+                                        <button
+                                            onClick={confirmCheckout}
+                                            className="flex-1 py-2.5 px-4 bg-primary text-primary-foreground hover:bg-primary/90 rounded-xl font-bold shadow-md transition-colors"
+                                        >
+                                            Sí, confirmar
+                                        </button>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </div>
+                    )}
+                </AnimatePresence>
             </main>
         </>
     );
