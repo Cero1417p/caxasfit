@@ -7,8 +7,6 @@ import { products } from "@/config/products";
 import { getProductIdFromSlug } from "@/utils/slug";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
-import { FloatingCart } from "@/components/FloatingCart";
 import { StarRating } from "@/components/StarRating";
 import { useCart } from "@/contexts/CartContext";
 import { useFavorites } from "@/contexts/FavoritesContext";
@@ -155,8 +153,8 @@ export default function ProductPage({ params }: ProductPageProps) {
                                                 key={index}
                                                 onClick={() => setSelectedVariantIndex(index)}
                                                 className={`flex items-center justify-between px-4 py-3 rounded-xl border-2 transition-all ${selectedVariantIndex === index
-                                                        ? "border-primary bg-primary/10 shadow-md"
-                                                        : "border-border hover:border-primary/50 hover:bg-muted/50"
+                                                    ? "border-primary bg-primary/10 shadow-md"
+                                                    : "border-border hover:border-primary/50 hover:bg-muted/50"
                                                     }`}
                                             >
                                                 <div className="text-left">
@@ -197,7 +195,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                                     >
                                         <Minus className="w-5 h-5" />
                                     </button>
-                                    <span className="text-2xl font-bold min-w-[3rem] text-center">{quantity}</span>
+                                    <span className="text-2xl font-bold min-w-12 text-center">{quantity}</span>
                                     <button
                                         onClick={incrementQuantity}
                                         className="p-3 rounded-lg bg-muted hover:bg-muted/80 transition-colors"
@@ -238,7 +236,6 @@ export default function ProductPage({ params }: ProductPageProps) {
                     </div>
                 </div>
             </main>
-            <FloatingCart />
         </>
     );
 }

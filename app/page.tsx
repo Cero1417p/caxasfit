@@ -6,7 +6,6 @@ import { TrustSection } from "@/components/TrustSection";
 import { FAQ } from "@/components/FAQ";
 import { Footer } from "@/components/Footer";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
-import { FloatingCart } from "@/components/FloatingCart";
 
 export default function Home() {
   return (
@@ -21,7 +20,6 @@ export default function Home() {
       </main>
       <Footer />
       <FloatingWhatsApp />
-      <FloatingCart />
     </>
   );
 }
