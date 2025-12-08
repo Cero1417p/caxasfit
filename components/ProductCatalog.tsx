@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { products } from "@/config/products";
 import { ProductCard } from "./ProductCard";
-import { CategoryFilter } from "./CategoryFilter";
+import { CategoryFilter } from "./CategoryFilter2";
 
 export function ProductCatalog() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
@@ -20,9 +20,13 @@ export function ProductCatalog() {
     if (category === "Todos") {
       setSelectedCategories([]);
     } else {
+      /* MULTIPLE CATEGORIA
       setSelectedCategories((prev) =>
         prev.includes(category) ? prev.filter((c) => c !== category) : [...prev, category]
       );
+      */
+     setSelectedCategories((prev) =>
+        prev.includes(category) ? [] : [category]);
     }
   };
 
