@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/contexts/ThemeContext";
 import { Analytics } from "@vercel/analytics/next"
 import { FavoritesProvider } from "@/contexts/FavoritesContext";
 import { CartProvider } from "@/contexts/CartContext";
+import { Toaster } from "sonner";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -39,6 +40,7 @@ export default function RootLayout({
           <FavoritesProvider>
             <CartProvider>
               {children}
+              <Toaster position="top-center" richColors />
             </CartProvider>
           </FavoritesProvider>
         </ThemeProvider>
