@@ -60,9 +60,9 @@ export const siteConfig: SiteConfig = {
     ctaText: "Ver Catálogo",
   },
   expert: {
-    name: "Kangaroo",
-    photo: "/expert.jpg", // Agregar foto del experto
-    bio: "Hola, soy Kangaroo. Selecciono personalmente los mejores suplementos para que logres tus objetivos. Si no sabes cuál elegir, escríbeme y te asesoro gratis.",
+    name: "Matthew Torres",
+    photo: "https://res.cloudinary.com/dxntqapz6/image/upload/v1765173437/entrenador_gjnecn.png", // Agregar foto del experto
+    bio: "Hola, soy Matthew. Selecciono personalmente los mejores suplementos para que logres tus objetivos. Si no sabes cuál elegir, escríbeme y te asesoro gratis.",
     whatsapp: "51900136284", // Número personal del experto
   },
   social: {
