@@ -3,6 +3,8 @@ import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { Analytics } from "@vercel/analytics/next"
+import { FavoritesProvider } from "@/contexts/FavoritesContext";
+import { CartProvider } from "@/contexts/CartContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -28,13 +30,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className="light" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning>
       <body
         suppressHydrationWarning
         className={`${inter.variable} ${outfit.variable} antialiased min-h-screen flex flex-col`}
       >
         <ThemeProvider>
-          {children}
+          <FavoritesProvider>
+            <CartProvider>
+              {children}
+            </CartProvider>
+          </FavoritesProvider>
         </ThemeProvider>
 
         <Analytics />
