@@ -25,7 +25,7 @@ export function CategoryFilter({
   }, []);
 
   return (
-    <div className="mb-8 lg:mb-12 w-full">
+    <div className="w-full">
       {/* Contenedor de Scroll Horizontal
         - overflow-x-auto: Habilita scroll horizontal.
         - [&::-webkit-scrollbar]:hidden: Sintaxis de Tailwind para ocultar scrollbar en Chrome/Safari.
@@ -34,7 +34,7 @@ export function CategoryFilter({
       */}
       <div
         ref={scrollContainerRef}
-        className="flex overflow-x-auto py-4 px-1 gap-3 w-full md:flex-wrap md:justify-center md:overflow-visible items-center [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
+        className="flex overflow-x-auto pt-4 px-1 gap-3 w-full md:flex-wrap md:justify-center md:overflow-visible items-center [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
       >
         {categories.map((category) => {
           const isSelected =
@@ -53,11 +53,10 @@ export function CategoryFilter({
               }}
               // Nota: Usa comillas invertidas (backticks) para permitir saltos de línea en className si lo deseas, 
               // pero aquí lo he dejado todo junto para evitar errores de copiado.
-              className={`relative px-5 py-2.5 rounded-lg font-medium text-sm whitespace-nowrap border transition-colors duration-200 flex-shrink-0 ${
-                isSelected
-                  ? "bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105"
-                            : "bg-muted text-muted-foreground hover:bg-muted/80 hover:scale-105"
-              }`}
+              className={`relative px-5 py-2.5 rounded-lg font-medium text-sm whitespace-nowrap border transition-colors duration-200 flex-shrink-0 ${isSelected
+                ? "bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105"
+                : "bg-muted text-muted-foreground hover:bg-muted/80 hover:scale-105"
+                }`}
             >
               {category}
 
@@ -74,10 +73,6 @@ export function CategoryFilter({
         })}
       </div>
 
-      {/* Indicador visual solo para móvil */}
-      <div className="md:hidden text-center text-xs text-muted-foreground mt-1 opacity-60">
-        Desliza para ver más
-      </div>
     </div>
   );
 }
