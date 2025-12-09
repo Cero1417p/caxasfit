@@ -27,7 +27,7 @@ export function Header() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 glass`}
       >
-        <nav className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-4">
+        <nav className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex items-center justify-between">
             {/* Mobile Menu Button - Left */}
             <div className="md:hidden">
@@ -107,7 +107,7 @@ export function Header() {
 
           {/* Mobile Menu */}
           {isMobileMenuOpen && (
-            <div className="md:hidden mt-4 py-4 space-y-2 animate-fade-in">
+            <div className="md:hidden mt-2 py-4 space-y-2 animate-fade-in">
               <button
                 onClick={() => scrollToSection("productos")}
                 className="block w-full text-left px-4 py-3 rounded-lg hover:bg-muted transition-colors font-medium"
