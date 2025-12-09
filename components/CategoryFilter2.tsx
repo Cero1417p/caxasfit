@@ -34,7 +34,7 @@ export function CategoryFilter({
       */}
       <div
         ref={scrollContainerRef}
-        className="flex overflow-x-auto pt-4 px-1 gap-3 w-full md:flex-wrap md:justify-center md:overflow-visible items-center [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
+        className="flex overflow-x-auto py-4 px-1 gap-3 w-full md:flex-wrap md:justify-center md:overflow-visible items-center [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
       >
         {categories.map((category) => {
           const isSelected =
@@ -46,16 +46,11 @@ export function CategoryFilter({
               key={category}
               onClick={() => onToggleCategory(category)}
               whileTap={{ scale: 0.95 }}
-              initial={false}
-              animate={{
-                backgroundColor: isSelected ? "hsl(var(--primary))" : "transparent",
-                color: isSelected ? "hsl(var(--primary-foreground))" : "hsl(var(--muted-foreground))",
-              }}
               // Nota: Usa comillas invertidas (backticks) para permitir saltos de línea en className si lo deseas, 
               // pero aquí lo he dejado todo junto para evitar errores de copiado.
               className={`relative px-5 py-2.5 rounded-lg font-medium text-sm whitespace-nowrap border transition-colors duration-200 flex-shrink-0 ${isSelected
                 ? "bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105"
-                : "bg-muted text-muted-foreground hover:bg-muted/80 hover:scale-105"
+                : "bg-black text-muted-foreground hover:bg-muted/80 hover:scale-105"
                 }`}
             >
               {category}
