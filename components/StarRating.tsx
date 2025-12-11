@@ -4,7 +4,7 @@ import { Star } from "lucide-react";
 
 interface StarRatingProps {
     rating: number; // 0-5
-    size?: "sm" | "md" | "lg";
+    size?: "xs" | "sm" | "md" | "lg";
     showCount?: boolean;
     count?: number;
 }
