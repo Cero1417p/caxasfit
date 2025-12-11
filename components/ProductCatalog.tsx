@@ -82,7 +82,7 @@ export function ProductCatalog() {
         </div>
 
         {/* Sticky Controls Wrapper */}
-        <div className="sticky top-[60px] md:top-[70px] z-40 bg-background/95 backdrop-blur-sm -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8  border-b border-border/50 shadow-sm transition-all">
+        <div className="sticky top-[65px] z-40 bg-background/95 backdrop-blur-sm -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8  border-b border-border/50 shadow-sm transition-all">
           <div className="max-w-7xl mx-auto">
             <CategoryFilter
               categories={categories}
