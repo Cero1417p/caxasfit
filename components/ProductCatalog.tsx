@@ -38,6 +38,15 @@ export function ProductCatalog() {
         prev.includes(category) ? [] : [category]
       );
     }
+
+    const section = document.getElementById("productos");
+    if (section) {
+      const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: sectionTop + 60, // Ajuste para el header fijo
+        behavior: "smooth",
+      });
+    }
   };
 
   /* Filtering Logic */
@@ -75,10 +84,10 @@ export function ProductCatalog() {
 
         <div className="mt-4">
           <ProductSearch
-              searchQuery={searchQuery}
-              onSearchChange={handleSearch}
-              onClear={clearSearch}
-            />
+            searchQuery={searchQuery}
+            onSearchChange={handleSearch}
+            onClear={clearSearch}
+          />
         </div>
 
         {/* Sticky Controls Wrapper */}
