@@ -34,7 +34,10 @@ export function CategoryFilter({
       */}
       <div
         ref={scrollContainerRef}
-        className="flex overflow-x-auto py-4 px-1 gap-3 w-full md:flex-wrap md:justify-center md:overflow-visible items-center [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
+        className="flex overflow-x-auto py-4 pr-1 gap-6 w-full items-center 
+             [&::-webkit-scrollbar]:hidden 
+             [-ms-overflow-style:'none'] 
+             [scrollbar-width:'none']"
       >
         {categories.map((category) => {
           const isSelected =
@@ -42,28 +45,30 @@ export function CategoryFilter({
             selectedCategories.includes(category);
 
           return (
-            <motion.button
-              key={category}
-              onClick={() => onToggleCategory(category)}
-              whileTap={{ scale: 0.95 }}
-              // Nota: Usa comillas invertidas (backticks) para permitir saltos de línea en className si lo deseas, 
-              // pero aquí lo he dejado todo junto para evitar errores de copiado.
-              className={`relative px-5 py-2.5 rounded-lg font-medium text-sm whitespace-nowrap border transition-colors duration-200 flex-shrink-0 ${isSelected
-                ? "bg-gradient-to-r from-primary to-secondary text-white shadow-lg scale-105"
-                : "bg-black text-muted-foreground hover:bg-muted/80 hover:scale-105"
-                }`}
-            >
-              {category}
-
-              {/* Punto indicador (opcional) */}
-              {isSelected && category !== "Todos" && (
-                <motion.span
-                  initial={{ width: 0, opacity: 0 }}
-                  animate={{ width: "auto", opacity: 1 }}
-                  className="ml-2 inline-block w-1.5 h-1.5 rounded-full bg-background"
+            <div key={category} className="relative flex flex-col items-center shrink-0 ">
+              <motion.button
+                onClick={() => onToggleCategory(category)}
+                whileTap={{ scale: 0.95 }}
+                className={`py-3 text-sm font-medium whitespace-nowrap transition-colors duration-200 ${isSelected
+                  ? "text-primary font-semibold"
+                  : "text-muted-foreground hover:text-foreground"
+                  }`}
+              >
+                {category}
+              </motion.button>
+              {isSelected && (
+                <motion.div
+                  layoutId="activeTab"
+                  className="absolute bottom-0 w-6 mx-auto h-[3px] bg-primary rounded-t-full"
+                  initial={false}
+                  transition={{
+                    type: "spring",
+                    stiffness: 500,
+                    damping: 30,
+                  }}
                 />
               )}
-            </motion.button>
+            </div>
           );
         })}
       </div>
