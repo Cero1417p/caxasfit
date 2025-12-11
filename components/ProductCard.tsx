@@ -7,6 +7,7 @@ import { Product } from "@/config/products";
 import { ShoppingCart, Check } from "lucide-react";
 import { useCart } from "@/contexts/CartContext";
 import { generateSlug } from "@/utils/slug";
+import { StarRating } from "./StarRating";
 
 interface ProductCardProps {
   product: Product;
@@ -31,9 +32,9 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <Link href={`/productos/${slug}`}>
-      <div className="group relative bg-card rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-border cursor-pointer">
+      <div className="group relative bg-card overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1  cursor-pointer">
         {/* Product Image */}
-        <div className="relative h-48 sm:h-56 bg-muted overflow-hidden">
+        <div className="rounded-sm relative h-48 sm:h-56 bg-muted overflow-hidden">
           {firstVariant.image && !imageError ? (
             <Image
               src={firstVariant.image}
@@ -51,27 +52,39 @@ export function ProductCard({ product }: ProductCardProps) {
             </div>
           )}
 
+          
+
           {/* Hover Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
 
+          {/*
           <div className="absolute top-3 right-3 bg-primary/90 backdrop-blur-sm text-primary-foreground px-3 py-1 rounded-full text-xs font-semibold">
             {product.category}
           </div>
+          */}
 
         </div>
 
         {/* Product Info */}
-        <div className=" p-2 sm:p-4 space-y-1 sm:space-y-2">
+        <div className=" py-2 sm:p-4 space-y-1 sm:space-y-2">
+          
+          {/* Product Name */}
+          <h3 className="text-xs sm:text-lg line-clamp-2 leading-tight">
+            {product.name}
+          </h3>
+
+          {/* Price */}
+          <div>
+            <StarRating rating={5} size="xs"/>
+          </div>
+
           {/* Brand */}
           <div className="text-xs font-bold text-primary uppercase tracking-wider">
             {product.brand}
           </div>
 
-          {/* Product Name */}
-          <h3 className="text-base sm:text-lg font-bold line-clamp-2 min-h-7 leading-tight">
-            {product.name}
-          </h3>
+          
 
           {/* Variant Content */}
           <div className="text-sm text-muted-foreground font-medium">
@@ -83,16 +96,17 @@ export function ProductCard({ product }: ProductCardProps) {
 
           {/* Price */}
           <div className="flex items-center justify-between">
-            <div className="text-lg font-extrabold gradient-text">
-              S/{firstVariant.price_public.toFixed(2)}
+            <div className="flex items-center">
+              S/<div className="text-lg font-bold">{firstVariant.price_public.toFixed(2)}
+              </div>
             </div>
             <div>
               {/* Add to Cart Button */}
               <button
                 onClick={handleAddToCart}
-                className={`p-2 rounded-full backdrop-blur-sm transition-all hover:scale-110 z-10 shadow-lg flex items-center justify-center ${isAdded
+                className={`p-2 rounded-xl backdrop-blur-sm transition-all hover:scale-110 z-10 shadow-lg flex items-center justify-center ${isAdded
                   ? "bg-green-500 text-white hover:bg-green-600"
-                  : "bg-primary text-primary-foreground hover:bg-primary/90"
+                  : "border text-primary-foreground hover:bg-primary/90"
                   }`}
                 aria-label={isAdded ? "Added to cart" : "Add to cart"}
               >

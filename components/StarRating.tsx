@@ -11,6 +11,7 @@ interface StarRatingProps {
 
 export function StarRating({ rating, size = "md", showCount = false, count }: StarRatingProps) {
     const sizeClasses = {
+        xs: "w-3 h-3",
         sm: "w-3.5 h-3.5",
         md: "w-5 h-5",
         lg: "w-6 h-6",

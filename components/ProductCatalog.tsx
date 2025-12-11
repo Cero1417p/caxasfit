@@ -69,7 +69,7 @@ export function ProductCatalog() {
 
   return (
     <section id="productos" className="pb-10 pt-5 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8">
-      <div className="container mx-auto max-w-7xl">
+      <div className="containe p-0 mx-auto max-w-7xl">
         {/* Section Title */}
         <div className="text-center lg:mb-5 animate-fade-in">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
@@ -103,7 +103,7 @@ export function ProductCatalog() {
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8 mt-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 lg:gap-8 mt-8">
           {filteredProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
