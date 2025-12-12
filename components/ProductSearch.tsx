@@ -1,20 +1,48 @@
 "use client";
 
-import { ChangeEvent, KeyboardEvent } from "react";
+import { ChangeEvent, KeyboardEvent, useEffect, useState } from "react";
 import { Search, X } from "lucide-react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-interface ProductSearchProps {
-    searchQuery: string;
-    onSearchChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    onClear: () => void;
-}
+export function ProductSearch() {
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
 
-export function ProductSearch({ searchQuery, onSearchChange, onClear }: ProductSearchProps) {
+    const searchParam = searchParams.get("search") || "";
+    const [searchQuery, setSearchQuery] = useState(searchParam);
+
+    /* Handlers */
+    const onSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const query = e.target.value;
+        setSearchQuery(query);
+
+        const params = new URLSearchParams(searchParams.toString());
+        if (query.trim()) {
+            params.set("search", query);
+            params.delete("category"); // Clear categories when searching
+        } else {
+            params.delete("search");
+        }
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    };
+
+    const onClear = () => {
+        setSearchQuery("");
+        const params = new URLSearchParams(searchParams.toString());
+        params.delete("search");
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    };
+
     const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
             e.currentTarget.blur();
         }
     };
+
+    useEffect(() => {
+        setSearchQuery(searchParam);
+    }, [searchParam]);
 
     return (
         <div className="max-w-md mx-auto relative">

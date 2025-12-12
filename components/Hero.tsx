@@ -3,6 +3,7 @@
 import { ArrowDown } from "lucide-react";
 import Image from "next/image";
 import { siteConfig } from "@/config/site.config";
+import Link from "next/link";
 
 export function Hero() {
   const scrollToCatalog = () => {
@@ -46,13 +47,14 @@ export function Hero() {
 
           {/* CTA Button */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-6 px-4">
-            <button
+            <Link
+              href="/productos"
               onClick={scrollToCatalog}
               className="group px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold text-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center gap-2 w-full sm:w-auto justify-center border border-white/10"
             >
               {siteConfig.hero.ctaText}
               <ArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
-            </button>
+            </Link>
           </div>
 
           {/* Trust Badges */}
