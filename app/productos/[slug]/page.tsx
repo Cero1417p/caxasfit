@@ -82,7 +82,7 @@ export default function ProductPage({ params }: ProductPageProps) {
                                         src={selectedVariant.image}
                                         alt={product.name}
                                         fill
-                                        className="object-cover"
+                                        className="object-contain"
                                         sizes="(max-width: 1024px) 100vw, 50vw"
                                         priority
                                         onError={() => setImageError(true)}

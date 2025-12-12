@@ -25,7 +25,7 @@ export function CategoryFilter({
   }, []);
 
   return (
-    <div className="w-full">
+    <div className="w-full mb-0">
       {/* Contenedor de Scroll Horizontal
         - overflow-x-auto: Habilita scroll horizontal.
         - [&::-webkit-scrollbar]:hidden: Sintaxis de Tailwind para ocultar scrollbar en Chrome/Safari.

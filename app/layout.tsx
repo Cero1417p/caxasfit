@@ -6,6 +6,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { FavoritesProvider } from "@/contexts/FavoritesContext";
 import { CartProvider } from "@/contexts/CartContext";
 import { Toaster } from "sonner";
+import { Footer } from "@/components/Footer";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -46,7 +47,9 @@ export default function RootLayout({
         </ThemeProvider>
 
         <Analytics />
+        <Footer />
       </body>
+      
     </html>
   );
 }

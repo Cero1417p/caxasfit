@@ -19,7 +19,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
     const router = useRouter();
     const { cart, updateQuantity, removeFromCart, clearCart, subtotal, shipping, total, applyPromoCode, promoCode } =
         useCart();
-    
+
     const [showConfirmation, setShowConfirmation] = useState(false);
 
     /* PROMO
@@ -52,9 +52,9 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             // que la página principal "salte" al desaparecer la barra de scroll
             const scrollBarCompensation = window.innerWidth - document.documentElement.clientWidth;
             if (scrollBarCompensation) {
-                 // ⚠️ Nota: Esta clase 'no-scroll' deberías definirla en tu CSS/Tailwind global
-                 // body.no-scroll { overflow: hidden; padding-right: [valor]; }
-                 // Pero para una solución rápida, modificamos el style directamente:
+                // ⚠️ Nota: Esta clase 'no-scroll' deberías definirla en tu CSS/Tailwind global
+                // body.no-scroll { overflow: hidden; padding-right: [valor]; }
+                // Pero para una solución rápida, modificamos el style directamente:
                 document.body.style.paddingRight = `${scrollBarCompensation}px`;
             }
 
@@ -231,7 +231,7 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                                                         <div className="text-xs text-muted-foreground hidden sm:block">
                                                             {variant.content} • {variant.flavor}
                                                         </div>
-                                                        <div className="text-lg font-bold gradient-text">S/ {itemTotal.toFixed(2)}</div>
+                                                        <div className="flex">S/ <div className="text-lg font-bold">{itemTotal.toFixed(2)}</div></div>
                                                     </div>
                                                 </div>
                                             </div>
