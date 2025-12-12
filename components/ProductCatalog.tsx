@@ -98,7 +98,7 @@ export function ProductCatalog() {
       <main id="productos" className="pb-10 py-[64px] px-4 sm:px-6 lg:px-8">
 
         <div className="containe p-0 mx-auto max-w-7xl">
-          
+
 
           {/* Sticky Controls Wrapper */}
           <div className="sticky top-[66px] z-40 bg-background/95 backdrop-blur-sm -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8  border-b border-border/50 shadow-sm transition-all">
@@ -112,25 +112,20 @@ export function ProductCatalog() {
             </div>
           </div>
 
-          <div>
-            <div className="flex flex-row justify-between items-center text-sm text-muted-foreground gap-4 border-t pt-2">
-                <div className="font-medium">
-                  {filteredProducts.length} {filteredProducts.length === 1 ? "Producto activo" : "Productos activos"}
-                </div>
-                <button
-                  onClick={toggleSort}
-                  className="flex items-center gap-2 hover:text-primary transition-colors"
-                >
-                  Ordenar por precio
-                  {sortOrder === "asc" && <span>(Menor a Mayor) ↑</span>}
-                  {sortOrder === "desc" && <span>(Mayor a Menor) ↓</span>}
-                  {sortOrder === null && <span>-</span>}
-                </button>
-              </div>
+          <div className="flex justify-between items-center text-xs text-muted-foreground border-t pt-2">
+            <div className="font-medium">
+              {filteredProducts.length} {filteredProducts.length === 1 ? "Producto" : "Productos"}
+            </div>
+            <button
+              onClick={toggleSort}
+              className="inline-flex items-center border border-border gap-1 px-3 py-1 rounded-full  text-xs font-semibold hover:bg-muted hover:text-white transition-colors"
+            >
+              Precio {sortOrder === "asc" ? "↑" : sortOrder === "desc" ? "↓" : "-"}
+            </button>
           </div>
 
           {/* Products Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 lg:gap-8 mt-8">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 lg:gap-8 mt-5">
             {filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}

@@ -34,7 +34,7 @@ export function CategoryFilter({
       */}
       <div
         ref={scrollContainerRef}
-        className="flex overflow-x-auto py-4 pr-1 gap-6 w-full items-center 
+        className="flex overflow-x-auto md:py-4 pr-1 gap-6 w-full items-center 
              [&::-webkit-scrollbar]:hidden 
              [-ms-overflow-style:'none'] 
              [scrollbar-width:'none']"

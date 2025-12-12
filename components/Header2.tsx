@@ -10,19 +10,12 @@ import { ProductSearch } from "./ProductSearch";
 
 
 export function Header() {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const { getCartCount } = useCart();
 
   const cartCount = getCartCount();
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setIsMobileMenuOpen(false);
-    }
-  };
+ 
 
   return (
     <>
@@ -41,7 +34,7 @@ export function Header() {
               {siteConfig.site.name}
             </Link>
 
-            <div>
+            <div className="md:hidden mr-2">
               <Link href="/">
                 <Home />
               </Link>
