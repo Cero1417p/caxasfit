@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, X, ShoppingCart } from "lucide-react";
+import { Home, ShoppingCart } from "lucide-react";
 import { siteConfig } from "@/config/site.config";
 import { CartDrawer } from "./CartDrawer";
 import { useCart } from "@/contexts/CartContext";
@@ -31,7 +31,7 @@ export function Header() {
       >
         <nav className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-2">
           <div className="flex items-center justify-between">
-            
+
 
             {/* Logo */}
             <Link
@@ -42,7 +42,13 @@ export function Header() {
             </Link>
 
             <div>
-                <ProductSearch/>
+              <Link href="/">
+                <Home />
+              </Link>
+            </div>
+
+            <div>
+              <ProductSearch />
             </div>
 
             {/* Desktop Navigation */}
