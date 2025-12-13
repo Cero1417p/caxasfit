@@ -8,6 +8,11 @@
     "start": "next start",
     "lint": "eslint"
   },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "maintained node versions"
+  ],
   "dependencies": {
     "@vercel/analytics": "^1.6.1",
     "framer-motion": "^12.23.24",
