@@ -18,7 +18,7 @@ export function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 -z-20">
         <Image
-          src="/images/hero-bg.png"
+          src="https://res.cloudinary.com/dxntqapz6/image/upload/v1765595445/hero-bg_1_zqmeh1.webp"
           alt="Fitness Training"
           fill
           className="object-cover object-center"

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import { Menu, X, ShoppingCart } from "lucide-react";
 import { siteConfig } from "@/config/site.config";
 import { CartDrawer } from "./CartDrawer";
@@ -10,6 +11,8 @@ import { useCart } from "@/contexts/CartContext";
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
   const { getCartCount } = useCart();
 
   const cartCount = getCartCount();
@@ -132,7 +135,15 @@ export function Header() {
       </header>
 
       {/* Cart Drawer */}
-      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      <CartDrawer
+        isOpen={isCartOpen}
+        onClose={() => {
+          setIsCartOpen(false);
+          if (cartCount === 0 && pathname === "/") {
+            router.push("/productos");
+          }
+        }}
+      />
     </>
   );
 }
