@@ -36,7 +36,7 @@ export function TrustSection() {
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center mb-4 animate-pulse">
                   <Icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
+                <h2 className="text-xl font-bold mb-2">{benefit.title}</h2>
                 <p className="text-muted-foreground leading-relaxed">{benefit.description}</p>
               </div>
             );
